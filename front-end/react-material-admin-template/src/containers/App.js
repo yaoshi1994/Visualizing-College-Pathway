@@ -36,7 +36,7 @@ class App extends React.Component {
         paddingLeft: navDrawerOpen ? paddingLeftDrawerOpen : 0
       },
       container: {
-        margin: '80px 20px 20px 15px',
+        margin: '0px 0px 0px 0px',
         paddingLeft: navDrawerOpen && this.props.width !== SMALL ? paddingLeftDrawerOpen : 0
       }
     };

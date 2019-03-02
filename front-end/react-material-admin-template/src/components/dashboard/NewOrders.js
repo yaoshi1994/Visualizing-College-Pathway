@@ -16,23 +16,18 @@ const NewOrders = (props) => {
       padding: '5px 15px 0 15px'
     },
     header: {
-      fontSize: 24,
+      fontSize: 70,
       fontWeight: typography.fontWeightLight,
       color: white,
       backgroundColor: purple600,
-      padding: 10,
+      padding: 20,
     }
   };
 
   return (
     <Paper style={styles.paper}>
-      <div style={{...styles.header}}>New Orders</div>
+      <div style={{...styles.header}}>Start Here</div>
       <div style={styles.div}>
-        <ResponsiveContainer >
-          <LineChart data={props.data}>
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={2} />
-          </LineChart>
-        </ResponsiveContainer>
       </div>
     </Paper>
   );
