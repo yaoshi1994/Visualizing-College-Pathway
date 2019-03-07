@@ -17,6 +17,7 @@ WEIGHT 		= 'weight'
 ID 			= 'id'
 NODES 		= 'nodes'
 LINKS 		= 'links'
+DATA_FILE 	= 'pathway_viz_example.csv'
 
 # DEFINE CLASSES
 ## DEFINE MAJOR
@@ -101,7 +102,7 @@ def update(data):
 	update_transcript(s_id, m_name, s_term, c_id, c_name)
 
 # LOAD DATA
-df 	= pd.read_csv('pathway_viz_example.csv')
+df 	= pd.read_csv(DATA_FILE)
 N, _ 	= df.shape
 
 # STORE DATA INTO SETS
