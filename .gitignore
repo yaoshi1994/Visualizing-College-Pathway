@@ -1,3 +1,4 @@
 .DS_Store
 front-end/react-material-admin-template/node_modules/
 *pathway_viz_example.csv
+*package-lock.json
