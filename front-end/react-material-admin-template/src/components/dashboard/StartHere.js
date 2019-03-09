@@ -31,7 +31,6 @@ const StartHere = (props) => {
       <div style={styles.div}></div>
       <div style={{...styles.header}}>College Pathway </div>
       <div style={{...styles.header}}>Visualization </div>
-      <div style={styles.div}></div>
     </Paper>
   );
 };

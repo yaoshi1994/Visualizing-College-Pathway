@@ -29,7 +29,7 @@ const TablePage = () => {
       name: {
         width: '40%'
       },
-      price: {
+      date: {
         width: '20%'
       },
       category: {
@@ -43,10 +43,10 @@ const TablePage = () => {
 
   return (
     <PageBase title="Table Page"
-              navigation="Application / Table Page">
+              navigation="Application / Saved Pathway">
 
       <div>
-        <Link to="/form" >
+        <Link to="/visualize" >
           <FloatingActionButton style={styles.floatingActionButton} backgroundColor={pink500}>
             <ContentAdd />
           </FloatingActionButton>
@@ -57,7 +57,7 @@ const TablePage = () => {
             <TableRow>
               <TableHeaderColumn style={styles.columns.id}>ID</TableHeaderColumn>
               <TableHeaderColumn style={styles.columns.name}>Name</TableHeaderColumn>
-              <TableHeaderColumn style={styles.columns.price}>Price</TableHeaderColumn>
+              <TableHeaderColumn style={styles.columns.date}>date</TableHeaderColumn>
               <TableHeaderColumn style={styles.columns.category}>Category</TableHeaderColumn>
               <TableHeaderColumn style={styles.columns.edit}>Edit</TableHeaderColumn>
             </TableRow>
@@ -67,7 +67,7 @@ const TablePage = () => {
               <TableRow key={item.id}>
                 <TableRowColumn style={styles.columns.id}>{item.id}</TableRowColumn>
                 <TableRowColumn style={styles.columns.name}>{item.name}</TableRowColumn>
-                <TableRowColumn style={styles.columns.price}>{item.price}</TableRowColumn>
+                <TableRowColumn style={styles.columns.date}>{item.date}</TableRowColumn>
                 <TableRowColumn style={styles.columns.category}>{item.category}</TableRowColumn>
                 <TableRowColumn style={styles.columns.edit}>
                   <Link className="button" to="/form">
@@ -82,7 +82,7 @@ const TablePage = () => {
               </TableRow>
             )}
           </TableBody>
-        </Table>    
+        </Table>
       </div>
     </PageBase>
   );

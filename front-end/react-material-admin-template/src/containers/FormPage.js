@@ -28,12 +28,15 @@ const FormPage = () => {
     },
     saveButton: {
       marginLeft: 5
+    },
+    textDiv: {
+      marginTop:50
     }
   };
 
   return (
-    <PageBase title="Form Page"
-              navigation="Application / Form Page">
+    <PageBase title="Contact Us"
+              navigation="Application / Contact Us">
       <form>
 
         <TextField
@@ -41,19 +44,24 @@ const FormPage = () => {
           floatingLabelText="Name"
           fullWidth={true}
         />
+        <TextField
+          hintText="Email Address"
+          floatingLabelText="Email"
+          fullWidth={true}
+        />
 
         <SelectField
-          floatingLabelText="City"
+          floatingLabelText="University"
           value=""
           fullWidth={true}>
-          <MenuItem key={0} primaryText="London"/>
-          <MenuItem key={1} primaryText="Paris"/>
-          <MenuItem key={2} primaryText="Rome"/>
+          <MenuItem key={0} primaryText="Cornell University"/>
+          <MenuItem key={1} primaryText="abcd University"/>
+          <MenuItem key={2} primaryText="Not Shown Above"/>
         </SelectField>
 
         <DatePicker
-          hintText="Expiration Date"
-          floatingLabelText="Expiration Date"
+          hintText="Date"
+          floatingLabelText="Date"
           fullWidth={true}/>
 
         <div style={styles.toggleDiv}>
@@ -62,15 +70,22 @@ const FormPage = () => {
             labelStyle={styles.toggleLabel}
           />
         </div>
-
         <Divider/>
+        <div style={styles.textDiv}>
+          <TextField
+          hintText="Message"
+          floatingLabelText="Message"
+          fullWidth={true}
+          />
+        </div>
+
 
         <div style={styles.buttons}>
           <Link to="/">
             <RaisedButton label="Cancel"/>
           </Link>
 
-          <RaisedButton label="Save"
+          <RaisedButton label="Send"
                         style={styles.saveButton}
                         type="submit"
                         primary={true}/>

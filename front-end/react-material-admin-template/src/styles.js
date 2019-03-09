@@ -1,5 +1,5 @@
 import {typography} from 'material-ui/styles';
-import {grey600} from 'material-ui/styles/colors';
+import {grey600,white} from 'material-ui/styles/colors';
 
 const styles = {
   navigation: {
@@ -12,7 +12,7 @@ const styles = {
   title: {
     fontSize: 24,
     fontWeight: typography.fontWeightLight,
-    marginBottom: 20
+    marginBottom: 20,
   },
   paper: {
     padding: 30

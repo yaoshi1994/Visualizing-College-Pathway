@@ -15,12 +15,13 @@ import StartHere from '../components/dashboard/StartHere';
 import Styles from '../styles'
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-
+import {Link} from 'react-router';
 
 var sectionStyle = {
-  width: "1580px",
+  width: "100%",
   height: "900px",
-  backgroundImage: "url('../images/back.png')"
+  backgroundImage: "url('../images/back.png')",
+  backgroundSize: 'cover'
 
 };
 const styles = {
@@ -52,11 +53,15 @@ const DashboardPage = () => {
         <div className="col-md-9 col-md-offset-5">
           <StartHere/>
           <div style={styles.buttonsDiv}>
-          <FlatButton label="Start Here"
-                        primary={true}
-                        backgroundColor="transparent"
-                        labelStyle = {{ fontSize: 30,color: white}}
-                        style={styles.buttons}/>
+
+          <Link to="/visualize">
+            <FlatButton label="Start Here"
+                          primary={true}
+                          backgroundColor="transparent"
+                          labelStyle = {{ fontSize: 30,color: white}}
+                          style={styles.buttons}/>
+          </Link>
+
           </div>
 
         </div>

@@ -1,71 +1,67 @@
 import React, { PropTypes } from 'react';
 import Paper from 'material-ui/Paper';
 import {PieChart, Pie, Cell, ResponsiveContainer} from 'recharts';
+import {white, purple600, red900,grey400} from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import GlobalStyles from '../../styles';
+import RaisedButton from 'material-ui/RaisedButton';
+import MenuItem from 'material-ui/MenuItem';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import Toggle from 'material-ui/Toggle';
+import Divider from 'material-ui/Divider';
+import PageBase from '../PageBase';
+
 
 const BrowserUsage = (props) => {
 
   const styles = {
     paper: {
+      backgroundColor: red900,
       minHeight: 344,
-      padding: 10
-    },
-    legend: {
-      paddingTop: 20,
+      padding: 20,
+      width: 400
     },
     pieChartDiv: {
       height: 290,
-      textAlign: 'center'
+      textAlign: 'left',
+      padding:15
+    },
+    textStyle: {
+      color:white,
+      fontSize: 22,
+      marginLeft: 30,
+      marginBottom:10
+    },
+    titleStyle: {
+      color:white,
+      fontSize: 30,
+      marginLeft:15
     }
   };
 
   return (
     <Paper style={styles.paper}>
-      <span style={GlobalStyles.title}>Browser Usage</span>
 
+      <span style={styles.titleStyle}>ABOUT</span>
       <div style={GlobalStyles.clear}/>
-
       <div className="row">
-
-        <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
           <div style={styles.pieChartDiv}>
-            <ResponsiveContainer>
-              <PieChart >
-                <Pie
-                  innerRadius={80}
-                  outerRadius={130}
-                  data={props.data}
-                  fill="#8884d8">
-                  {
-                    props.data.map((item) => <Cell key={item.name} fill={item.color}/>)
-                  }
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+            <p style={styles.textStyle}> Please select a major to see all possible pathways to graduate
+              from this major, Pathway is the "Foot Print" collected by students enrolled
+              into this school in last five years ...</p>
 
-        <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-          <div style={styles.legend}>
-            <div style={styles.legend}>
-              <List>
-                {props.data.map((item) =>
-                  <ListItem
-                    key={item.name}
-                    leftAvatar={
-                      <Avatar icon={item.icon}
-                              backgroundColor={item.color}/>
-                    }>
-                    {item.name}
-                  </ListItem>
-                )}
-              </List>
-            </div>
+            <SelectField
+              floatingLabelText="Major"
+              value=""
+              fullWidth={true}>
+              <MenuItem key={0} primaryText="Computer Science"/>
+              <MenuItem key={1} primaryText="Information Science"/>
+              <MenuItem key={2} primaryText="Statistics Science"/>
+            </SelectField>
           </div>
-        </div>
       </div>
     </Paper>
   );
