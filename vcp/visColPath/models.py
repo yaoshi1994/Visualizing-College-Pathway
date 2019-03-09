@@ -1,22 +1,16 @@
 from django.db import models
-
-
-class Major(models.Model):
-    major_name = models.CharField(max_length=50)
-    major_ID   = models.IntegerField(primary_key=True)
-
+from datetime import date
 
 class Student(models.Model):
-    major      = models.ForeignKey(Major, on_delete=models.DO_NOTHING)
-    student_ID = models.CharField(max_length=50, primary_key=True)
+    major  = models.CharField(max_length=50)
+    netID  = models.CharField(max_length=50, primary_key=True)
+    def __str__(self):
+        return self.netID
 
-class Course(models.Model):
-    course_ID   = models.IntegerField(primary_key=True)
-    course_name = models.CharField(max_length=100)
-
-
-class Transcript(models.Model):
-	student  = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
-	semester = models.IntegerField()
-	course   = models.ForeignKey(Course, on_delete=models.DO_NOTHING)
-  
+class Pathway(models.Model):
+	student     = models.ForeignKey(Student, on_delete=models.CASCADE)
+	name        = models.CharField(max_length=50)
+	date        = models.DateField("Date Generated", default=date.today)
+	category    = models.CharField(max_length=50)
+	def __str__(self):
+		return self.name
