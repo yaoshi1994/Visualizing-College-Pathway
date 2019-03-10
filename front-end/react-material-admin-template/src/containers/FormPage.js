@@ -64,13 +64,6 @@ const FormPage = () => {
           floatingLabelText="Date"
           fullWidth={true}/>
 
-        <div style={styles.toggleDiv}>
-          <Toggle
-            label="Disabled"
-            labelStyle={styles.toggleLabel}
-          />
-        </div>
-        <Divider/>
         <div style={styles.textDiv}>
           <TextField
           hintText="Message"

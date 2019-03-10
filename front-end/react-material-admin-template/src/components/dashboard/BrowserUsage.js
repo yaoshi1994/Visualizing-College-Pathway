@@ -20,24 +20,26 @@ const BrowserUsage = (props) => {
   const styles = {
     paper: {
       backgroundColor: red900,
-      minHeight: 344,
-      padding: 20,
+      minHeight: 600,
+      padding: 30,
+      marginLeft: 0,
+      marginTop: 30,
       width: 400
     },
     pieChartDiv: {
-      height: 290,
+      height: 400,
       textAlign: 'left',
       padding:15
     },
     textStyle: {
       color:white,
-      fontSize: 22,
+      fontSize: 27,
       marginLeft: 30,
-      marginBottom:10
+      marginBottom:10,
     },
     titleStyle: {
       color:white,
-      fontSize: 30,
+      fontSize: 40,
       marginLeft:15
     }
   };

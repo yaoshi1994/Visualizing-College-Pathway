@@ -1,11 +1,11 @@
 import * as d3 from '../src/d3.min';
 
-export function showDiagram(d3){
-  var width = 2000,
-          height = 1000;
+
+export function showDiagram(w, h){
+  var width = w,
+          height = h ;
   d3.selectAll('svg').remove();
-  var times = 5;
-  var svg = d3.select("body")
+  var svg = d3.select("#vis_table")
           .append("svg")
           .attr("width", width)
           .attr("height", height);
@@ -29,16 +29,25 @@ export function showDiagram(d3){
   // svg.call(tip_node);
   // svg.call(tip_link);
 
-  var link_force = d3.forceLink().id(function (d) {
-      return d.id;
-  });
+  var link_force = d3.forceLink()
+          .distance(function (d) {
+              return get_link_force(d.weight);
+          })
+          .id(function (d) {
+              return d.id;
+          });
   var charge_force = d3.forceManyBody()
-          .strength(-1500);
+          .strength(function (d) {
+              return 30;
+          });
 
   var simulation = d3.forceSimulation()
           .force("link", link_force)
           .force("charge", charge_force)
-          .force("center", d3.forceCenter(width / 3, height / 3));
+          .force("center", d3.forceCenter(width / 2, height / 2))
+          .force('collision', d3.forceCollide().radius(function (d) {
+              return get_node_size(d.weight, false);
+          }));
 
   d3.json("CS.json", function (error, graph) {
       if (error)
@@ -50,14 +59,24 @@ export function showDiagram(d3){
               .data(graph.links)
               .enter()
               .append("line")
-              .attr("stroke-width", function (d) {
-                  return get_link_width(d.weight, false);
-              })
+              .attr("stroke-width", 3)
               .attr("stroke", "#999")
-              .attr("stroke-opacity", 0.6)
+              .attr("stroke-opacity", function (d) {
+                  if (d.weight > 0) {
+                      return 0.6;
+                  } else {
+                      return 0;
+                  }
+              })
               .on("mouseover", display_link)
               .on("mouseout", hide_link)
-              .attr("marker-end", "url(#arrow)");
+              .attr("marker-end", function (d) {
+                  if (d.weight > 0) {
+                      return "url(#arrow)";
+                  } else {
+                      return;
+                  }
+              });
 
       var node = svg.selectAll(".node")
               .data(graph.nodes)
@@ -81,6 +100,7 @@ export function showDiagram(d3){
                   return d.id;
               })
               .attr("fill", "white");
+
   //                var node = svg.append("g")
   //                        .attr("class", "nodes")
   //                        .selectAll("circle")
@@ -97,11 +117,11 @@ export function showDiagram(d3){
 
       var arrowMarker = svg.append("marker")
               .attr("id", "arrow")
-              .attr("markerUnits", "strokeWidth")
-              .attr("markerWidth", 6)
-              .attr("markerHeight", 6)
+              .attr("markerUnits", "userSpaceOnUse")
+              .attr("markerWidth", 20)
+              .attr("markerHeight", 20)
               .attr("viewBox", "0 0 12 12")
-              .attr("refX", 10)
+              .attr("refX", 50)
               .attr("refY", 6)
               .attr("orient", "auto")
               .append("path")
@@ -117,24 +137,23 @@ export function showDiagram(d3){
       function ticked() {
           node
                   .attr("transform", function (d) {
-                      return "translate(" + d.x + "," + d.y + ")";
+                      return "translate(" + limitX(d) + "," + limitY(d) + ")";
                   });
 
           link
                   .attr("x1", function (d) {
-                      return d.source.x;
+                      return limitX(d.source);
                   })
                   .attr("y1", function (d) {
-                      return d.source.y;
+                      return limitY(d.source);
                   })
                   .attr("x2", function (d) {
-                      return d.target.x;
+                      return limitX(d.target);
                   })
                   .attr("y2", function (d) {
-                      return d.target.y;
+                      return limitY(d.target);
                   });
-
-  //                    .attr("cx", function (d) {
+  //                    node.attr("cx", function (d) {
   //                        return d.x;
   //                    })
   //                            .attr("cy", function (d) {
@@ -142,6 +161,23 @@ export function showDiagram(d3){
   //                            });
       }
   });
+
+  function limitX(node) {
+      return node.x
+  //                if(node.type == 1){
+  //                    return Math.min(200, Math.max(300, node.x));
+  //                }else if(node.type == 2){
+  //                    return Math.min(400, Math.max(500, node.x))
+  //                }else if(node.type == 3){
+  //                    return Math.min(600, Math.max(700, node.x))
+  //                }else{
+  //                    return Math.min(800, Math.max(900, node.x))
+  //                }
+  }
+
+  function limitY(node) {
+      return node.y;
+  }
 
   function dragstarted(d) {
       if (!d3.event.active)
@@ -163,51 +199,42 @@ export function showDiagram(d3){
   }
 
   function display_node(d) {
-      // tip_node.show(d);
+      tip_node.show(d);
       d3.select(this)
               .selectAll("circle")
               .attr("r", get_node_size(d.weight, true))
               .attr("fill", "orange");
   }
-  ;
 
   function hide_node(d) {
-      // tip_node.hide(d);
+      tip_node.hide(d);
       d3.select(this)
               .selectAll("circle")
               .attr("r", get_node_size(d.weight, false))
               .attr("fill", "red");
   }
-  ;
 
   function display_link(d) {
-      // tip_link.show(d);
+      tip_link.show(d);
       d3.select(this)
-              .attr("stroke-width", get_link_width(d.weight, true));
+              .attr("stroke-width", 5);
   }
-  ;
 
   function hide_link(d) {
-      // tip_link.hide(d);
+      tip_link.hide(d);
       d3.select(this)
-              .attr("stroke-width", get_link_width(d.weight, false));
+              .attr("stroke-width", 3);
   }
-  ;
 
-  function get_link_width(weight, highlight) {
-      if (highlight) {
-          return Math.pow(weight, 3) * 30;
-      } else {
-          return Math.pow(weight, 3) * 20;
-      }
+  function get_link_force(weight) {
+      return 1 / Math.pow(weight, 5) * 15;
   }
 
   function get_node_size(weight, highlight) {
       if (highlight) {
-          return weight * 350;
+          return Math.pow(weight, 3) * 100000;
       } else {
-          return weight * 300;
+          return Math.pow(weight, 3) * 100000;
       }
   }
-  return d3.selectAll('svg');
 }
