@@ -3,6 +3,7 @@ import PageBase from '../components/PageBase';
 // import D3tip from '../d3-tip';
 import * as Diagram from '../Diagram';
 import Data from '../data';
+import {cyan600, pink600, purple600, orange600, transparent,white} from 'material-ui/styles/colors';
 import BrowserUsage from '../components/dashboard/BrowserUsage';
 import globalStyles from '../styles';
 import * as d3 from '../d3.min';
@@ -15,7 +16,10 @@ const VisualizePage = () => {
     const styles = {
       d3pic: {
         marginLeft: 40
-      }
+      },
+      text: {
+        fontSize: 0
+      },
     };
   return (
     <div>
@@ -23,13 +27,14 @@ const VisualizePage = () => {
       <div className='row'>
         <div id="vis_table" ></div>
           <div style={styles.d3pic}>
-
-            {setTimeout(function(){Diagram.showDiagram(850,800)})}
-            
+            <div style={styles.text}>
+            {setTimeout(function(){Diagram.showDiagram(850,800,"Computer Science.json")})}
+            </div>
             <BrowserUsage data={Data.dashBoardPage.browserUsage}/>
-
           </div>
+
       </div>
+
     </div>
   );
 

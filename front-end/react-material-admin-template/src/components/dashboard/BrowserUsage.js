@@ -14,8 +14,32 @@ import Toggle from 'material-ui/Toggle';
 import Divider from 'material-ui/Divider';
 import PageBase from '../PageBase';
 
+class BrowserUsage extends React.Component {
+// const BrowserUsage = (props) => {
+constructor (props) {
+  super(props);
+}
 
-const BrowserUsage = (props) => {
+handleChange(evt) {
+  const target = evt.target;
+  const name = target.textContent;
+  switch(name) {
+  case "Information Science":
+    // code block
+    console.log(name);
+    break;
+  case  "Computer Science":
+    // code block
+    console.log(name);
+    break;
+  default:
+    // code block
+    console.log(typeof name);
+    break;
+  }
+}
+
+render(){
 
   const styles = {
     paper: {
@@ -44,30 +68,39 @@ const BrowserUsage = (props) => {
     }
   };
 
-  return (
-    <Paper style={styles.paper}>
+  const MAJOR_ITEMS = ['Computer Science', 'Information Science', 'Statistics Science'];
 
-      <span style={styles.titleStyle}>ABOUT</span>
-      <div style={GlobalStyles.clear}/>
-      <div className="row">
-          <div style={styles.pieChartDiv}>
-            <p style={styles.textStyle}> Please select a major to see all possible pathways to graduate
-              from this major, Pathway is the "Foot Print" collected by students enrolled
-              into this school in last five years ...</p>
 
-            <SelectField
-              floatingLabelText="Major"
-              value=""
-              fullWidth={true}>
-              <MenuItem key={0} primaryText="Computer Science"/>
-              <MenuItem key={1} primaryText="Information Science"/>
-              <MenuItem key={2} primaryText="Statistics Science"/>
-            </SelectField>
-          </div>
-      </div>
-    </Paper>
-  );
-};
+
+    return (
+
+      <Paper style={styles.paper}>
+
+        <span style={styles.titleStyle}>ABOUT</span>
+        <div style={GlobalStyles.clear}/>
+        <div className="row">
+            <div style={styles.pieChartDiv}>
+              <p style={styles.textStyle}> Please select a major to see all possible pathways to graduate
+                from this major, Pathway is the "Foot Print" collected by students enrolled
+                into this school in last five years ...</p>
+
+              <SelectField
+                id= "select-major"
+                floatingLabelText="Major"
+                className="md-cell"
+                fullWidth={true}
+                value=""
+                onChange={this.handleChange}>
+                <MenuItem key={0}  primaryText="Computer Science"/>
+                <MenuItem key={1}  primaryText="Information Science"/>
+                <MenuItem key={2}  primaryText="Statistics Science"/>
+              </SelectField>
+            </div>
+        </div>
+      </Paper>
+    );
+  };
+}
 
 BrowserUsage.propTypes = {
   data: PropTypes.array

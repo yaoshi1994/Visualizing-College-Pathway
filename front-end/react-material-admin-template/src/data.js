@@ -13,8 +13,8 @@ const data = {
     { text: 'Home', icon: <Assessment/>, link: '/dashboard' },
     { text: 'Visualize', icon: <GridOn/>, link: '/visualize' },
     { text: 'Saved Path', icon: <Web/>, link: '/table' },
-    { text: 'About', icon: <GridOn/>, link:  '/about'},
-    { text: 'Contact us', icon: <PermIdentity/>, link: '/form' },
+    { text: 'About Us', icon: <GridOn/>, link:  '/about'},
+    { text: 'Contact Us', icon: <PermIdentity/>, link: '/form' },
     { text: 'Login', icon: <PermIdentity/>, link: 'login' }
   ],
   tablePage: {
