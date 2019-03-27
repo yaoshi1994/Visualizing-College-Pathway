@@ -9,6 +9,7 @@ import Menu from 'material-ui/svg-icons/navigation/menu';
 import ViewModule from 'material-ui/svg-icons/action/view-module';
 import {white} from 'material-ui/styles/colors';
 import SearchBox from './SearchBox';
+import Typography from '@material-ui/core/Typography';
 
 class Header extends React.Component {
 
@@ -27,6 +28,11 @@ class Header extends React.Component {
       },
       iconsRightContainer: {
         marginLeft: 20
+      },
+      logo: {
+        cursor: 'pointer',
+        fontSize: 22,
+        marginLeft: 40
       }
     };
 
@@ -38,7 +44,9 @@ class Header extends React.Component {
                   <IconButton style={style.menuButton} onClick={handleChangeRequestNavDrawer}>
                     <Menu color={white} />
                   </IconButton>
+
               }
+
               iconElementRight={
                 <div style={style.iconsRightContainer}>
                   <IconMenu color={white}

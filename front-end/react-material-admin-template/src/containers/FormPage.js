@@ -10,6 +10,23 @@ import {grey400} from 'material-ui/styles/colors';
 import Divider from 'material-ui/Divider';
 import PageBase from '../components/PageBase';
 
+
+sendData = () => {
+    $.ajax({
+      type: 'POST',
+      url: "http://0.0.0.0:8000/get_data",
+      dataType: 'jsonp',
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringfy({'d': "lalallala"}),
+      success: function(data) {
+       console.log(JSON.stringfy({'d': "lalallala"}));
+     }.bind(this),
+      error: function(error) {
+        console.log(error)
+      }
+    })
+  }
+
 const FormPage = () => {
 
   const styles = {
@@ -74,9 +91,9 @@ const FormPage = () => {
 
 
         <div style={styles.buttons}>
-          <Link to="/">
-            <RaisedButton label="Cancel"/>
-          </Link>
+
+            <RaisedButton label="Cancel" onclick={()=> this.sendData()}/>
+
 
           <RaisedButton label="Send"
                         style={styles.saveButton}

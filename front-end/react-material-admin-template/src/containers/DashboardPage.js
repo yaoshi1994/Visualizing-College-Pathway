@@ -20,7 +20,7 @@ import {Link} from 'react-router';
 var sectionStyle = {
   width: "100%",
   height: "900px",
-  backgroundImage: "url('../images/back.png')",
+  backgroundImage: "url('../images/backCornell.png')",
   backgroundSize: 'cover'
 
 };

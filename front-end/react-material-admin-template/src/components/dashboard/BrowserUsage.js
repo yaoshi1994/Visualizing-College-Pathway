@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
 import Paper from 'material-ui/Paper';
-import {PieChart, Pie, Cell, ResponsiveContainer} from 'recharts';
 import {white, purple600, red900,grey400} from 'material-ui/styles/colors';
-import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import GlobalStyles from '../../styles';
@@ -44,16 +42,17 @@ render(){
   const styles = {
     paper: {
       backgroundColor: red900,
-      minHeight: 600,
+      minHeight: 300,
       padding: 30,
       marginLeft: 0,
-      marginTop: 30,
+      marginTop: 50,
       width: 400
     },
     pieChartDiv: {
-      height: 400,
+      height: 300,
       textAlign: 'left',
-      padding:15
+      padding:15,
+      marginBottom: 30
     },
     textStyle: {
       color:white,
@@ -64,7 +63,8 @@ render(){
     titleStyle: {
       color:white,
       fontSize: 40,
-      marginLeft:15
+      marginLeft:15,
+
     }
   };
 
@@ -73,20 +73,18 @@ render(){
 
 
     return (
-
       <Paper style={styles.paper}>
 
-        <span style={styles.titleStyle}>ABOUT</span>
         <div style={GlobalStyles.clear}/>
         <div className="row">
             <div style={styles.pieChartDiv}>
-              <p style={styles.textStyle}> Please select a major to see all possible pathways to graduate
-                from this major, Pathway is the "Foot Print" collected by students enrolled
-                into this school in last five years ...</p>
+              <p style={styles.textStyle}> Explore majors and find courses by seeing the choices of previous students.</p>
+              <p style={styles.textStyle}>Pick a major:  </p>
 
               <SelectField
                 id= "select-major"
-                floatingLabelText="Major"
+                floatingLabelText="Computer Sciennce"
+                floatingLabelStyle={{color: 'white'}}
                 className="md-cell"
                 fullWidth={true}
                 value=""

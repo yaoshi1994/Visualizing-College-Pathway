@@ -23,14 +23,15 @@ const StartHere = (props) => {
       color: white,
       backgroundColor: 'transparent',
       padding: 30,
+      marginLeft: 30
     }
   };
 
   return (
     <Paper style={styles.paper}>
       <div style={styles.div}></div>
-      <div style={{...styles.header}}>College Pathway </div>
-      <div style={{...styles.header}}>Visualization </div>
+      <div style={{...styles.header}}>Explore Course  </div>
+      <div style={{...styles.header}}>Pathways </div>
     </Paper>
   );
 };
